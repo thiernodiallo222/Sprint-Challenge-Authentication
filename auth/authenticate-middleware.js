@@ -1,15 +1,8 @@
-/* 
-  complete the middleware code to check if the user is logged in
-  before granting access to the next middleware/route handler
-*/
-// module.exports = (req, res, next) => {
-//   res.status(401).json({ you: 'shall not pass!' });
-// };
 require('dotenv').config();
 const jwt = require("jsonwebtoken")
 
-function restrict(role = "normal") {
-	return async (req, res, next) => {
+
+module.exports = (req, res, next) => {
 		const authError = {
 			message: "You shall not pass",
 		}
@@ -29,7 +22,7 @@ function restrict(role = "normal") {
             // tampered with, and we
 			// make the user log in again.
 			jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedPayload) => {
-				if (err || decodedPayload.userRole !== role) {
+				if (err) {
 					return res.status(401).json(authError)
 				}
 				// we attach the decoded payload values to the request, just in case we
@@ -43,6 +36,3 @@ function restrict(role = "normal") {
 			next(err)
 		}
 	}
-}
-
-module.exports = restrict

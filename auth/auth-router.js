@@ -36,9 +36,10 @@ router.post('/login', async (req, res) => {
     }
     const token = generateToken(user);
 
+       res.cookie("token", token);
+
 		res.json({
       message: `Welcome ${user.username}!`,
-      token: token,
 		})
 	} catch(err) {
 		next(err)
@@ -47,7 +48,7 @@ router.post('/login', async (req, res) => {
 function generateToken(user) {
   const payload = {
     userId: user.id,
-    userRole: "admin",  // this would normally come from the database
+    userRole: "regular",  // this would normally come from the database
   }
   const tokenSecret = process.env.TOKEN_SECRET || "hk3g$gi%sh!0h*dh.^kdh";
   
