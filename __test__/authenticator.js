@@ -11,20 +11,26 @@ afterAll(async () => {
 })
 
 describe("register and login integration test", () => {
-	it("POST /login", async () => {
-		const data = {username: }
+	it("POST /register", async () => {
+		const data = {
+			username: 'thiernodiallo864',
+			password:'passPlease',
+		}
 		const res = await supertest(server).post("/register").send(data)
-		expect(res.statusCode).toBe(201)
+		expect(res.statusCode).toBe(200)
 		expect(res.type).toBe("application/json")
-		expect(res.body.username).toBe("thiernodiallo864")
+		expect(res.body.username).toBe("thiernodiallo864");
 	})
 
 
 	it("POST /login", async () => {
-		const data = { username: "thiernodiallo864" }
+		const data = {
+			username: "thiernodiallo864",
+			password:'passPlease',
+		}
 		const res = await supertest(server).post("/login").send(data)
-		expect(res.statusCode).toBe(201)
+		expect(res.statusCode).toBe(200)
 		expect(res.type).toBe("application/json")
-		expect(res.body.name).toBe("thiernodiallo864")
+		expect(res.body.username).toBe("thiernodiallo864");
 	})
 })
