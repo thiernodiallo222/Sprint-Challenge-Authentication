@@ -1,5 +1,5 @@
-const supertest = require("supertest")
-const server = require("../api/server")
+const server = require("./server");
+const supertest = require("supertest");
 const db = require("../database/dbConfig");
 
 beforeEach(async () => {

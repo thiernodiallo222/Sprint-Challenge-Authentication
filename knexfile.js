@@ -6,7 +6,7 @@ module.exports = {
     migrations: {
       directory: './database/migrations',
     },
-    seeds: { directory: './database/seeds' },
+    // seeds: { directory: './database/seeds' },
   },
     testing: {
     client: 'sqlite3',
@@ -15,6 +15,6 @@ module.exports = {
     migrations: {
       directory: './database/migrations',
     },
-    seeds: { directory: './database/seeds' },
+    // seeds: { directory: './database/seeds' },
   },
 };
