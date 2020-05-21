@@ -1,5 +1,6 @@
 const supertest = require("supertest");
 const server = require("./server");
+// const server = require('../auth/auth-router');
 
 const db = require("../database/dbConfig");
 
@@ -13,13 +14,13 @@ afterAll(async () => {
 
 describe("register and login integration test", () => {
 	describe("register route", async() => {
-		it("POST /register", () => {
-			const payload = {
-				username: 'mariam90',
-				password: 'passPlease',
-			}
-	const res = await supertest(server).post("/register").send(payload)
-	    expect(res.status).toEqual(201)
+		it("POST /register", async() => {
+			// const payload = {
+			// 	username: 'mariam90',
+			// 	password: 'passPlease',
+			// }
+	const res = await supertest(server).post("/register").send({username:'alex98', password:'passPlease'})
+	    expect(res.status).toBe(200)
 		expect(res.type).toEqual("application/json")
 		expect(res.body.username).toEqual("mariam90");
 				
@@ -27,12 +28,12 @@ describe("register and login integration test", () => {
 	})
 	describe("login route", () => {
 		it("POST /login", async () => {
-		const payload = {
-			username: "mariam90",
-			password:'passPlease',
-		}
-		const res = await supertest(server).post("/login").send(payload)
-		expect(res.statusCode).toEqual(200)
+		// const payload = {
+		// 	username: "mariam90",
+		// 	password:'passPlease',
+		// }
+		const res = await supertest(server).post("/login").send({username:'mariam90', password:'passPlease'})
+		expect(res.status).toBe(200)
 		expect(res.type).toEqual("application/json")
 		expect(res.body.username).toEqual("mariam90");
 	})

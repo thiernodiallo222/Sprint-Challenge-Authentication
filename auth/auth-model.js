@@ -10,10 +10,8 @@ function findBy(username) {
 }
 
  async function add(payload) {
-   const result = db("users").insert(payload);
-   return result;
+   return db("users").insert(payload);
 }
-
 
 module.exports = {
   find,
