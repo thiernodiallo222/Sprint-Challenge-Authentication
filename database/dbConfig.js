@@ -1,9 +1,9 @@
-const knex = require('knex');
+const knex = require('knex')({client: sqlite3});
 
-const knexConfig = require('../knexfile.js');
+const knexConfig = require('../knexfile');
 
-// const dbEnv = process.env.DB_ENV || 'development';
+const environment = process.env.DB_ENV || 'dev';
 
-// module.exports = knex(knexConfig[dbEnv]);
-module.exports = knex(knexConfig.development);
+module.exports = knex(knexConfig[environment]);
+// module.exports = knex(knexConfig.development);
 
